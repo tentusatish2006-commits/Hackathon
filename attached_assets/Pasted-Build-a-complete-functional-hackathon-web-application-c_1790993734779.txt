@@ -1,0 +1,783 @@
+Build a complete, functional hackathon web application called:
+
+SMARTDEFECT AI
+"Detect. Understand. Prevent."
+
+PROJECT GOAL:
+Create an AI-powered manufacturing quality monitoring system based on a manufacturing dataset containing:
+
+BatchID
+MachineID
+Temperature
+Vibration
+DefectCount
+
+The application should automatically:
+1. Upload manufacturing CSV files
+2. Detect missing values
+3. Detect duplicate records
+4. Clean the dataset
+5. Categorize temperature
+6. Analyze machine health
+7. Calculate a transparent prototype risk score
+8. Visualize manufacturing data
+9. Generate understandable AI-style insights
+10. Provide maintenance recommendations
+11. Allow the cleaned dataset to be downloaded
+
+IMPORTANT:
+This must be a REAL WORKING APPLICATION, not a static UI mockup.
+
+==================================================
+TECH STACK
+==================================================
+
+Use:
+
+Frontend:
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- Recharts
+- Lucide React icons
+
+Backend:
+- Python FastAPI
+- Pandas
+- NumPy
+
+Use REST APIs between frontend and backend.
+
+If creating a backend makes deployment unnecessarily difficult, implement the data processing in the frontend using JavaScript, but the application must remain fully functional.
+
+==================================================
+DEFAULT DATASET
+==================================================
+
+Include this dataset as demo data:
+
+BatchID,MachineID,Temperature,Vibration,DefectCount
+
+B101,M1,72,2.1,0
+B102,M1,,2.4,1
+B103,M2,85,3.2,2
+B104,M2,78,,0
+B105,M3,92,3.8,3
+B106,M1,69,2.0,0
+B106,M1,69,2.0,0
+B107,M3,88,3.5,2
+B108,M2,74,2.6,1
+B109,M1,71,2.2,0
+
+This dataset intentionally contains:
+
+- 1 missing Temperature
+- 1 missing Vibration
+- 1 duplicate record
+
+Create a button:
+
+"Load Demo Dataset"
+
+When clicked, load this data into the application.
+
+==================================================
+DESIGN
+==================================================
+
+Create a premium Smart Factory / Industry 4.0 interface.
+
+Use:
+
+- Dark background
+- Blue/cyan glowing accents
+- Glassmorphism cards
+- Subtle gradients
+- Modern typography
+- Rounded cards
+- Professional charts
+- Smooth animations
+- Responsive layout
+
+Do NOT make it look like a basic student CRUD application.
+
+The application should look suitable for a technology hackathon.
+
+Use animations only where useful.
+
+==================================================
+NAVIGATION
+==================================================
+
+Create a sidebar with:
+
+SMARTDEFECT AI
+
+Dashboard
+Dataset
+Data Cleaning
+Machine Health
+Analytics
+AI Insights
+Recommendations
+
+At bottom:
+
+● AI Engine Online
+
+On mobile, convert the sidebar into a hamburger menu.
+
+==================================================
+DASHBOARD
+==================================================
+
+Create an impressive dashboard.
+
+Header:
+
+SMARTDEFECT AI
+Manufacturing Intelligence Center
+
+Subtitle:
+
+"Turn machine sensor data into actionable quality intelligence."
+
+Create four KPI cards:
+
+1. Total Batches
+2. Total Machines
+3. Total Defects
+4. Data Quality Score
+
+These values MUST be calculated dynamically from the current dataset.
+
+Do not hard-code them.
+
+Below that show:
+
+MACHINE HEALTH
+
+Machine cards for every MachineID.
+
+Each card should show:
+
+Machine ID
+Risk Score
+Temperature
+Vibration
+Defect Count
+Status
+
+Statuses:
+
+0–39 = HEALTHY
+40–69 = WARNING
+70–100 = CRITICAL
+
+Use:
+
+Green = Healthy
+Yellow = Warning
+Red = Critical
+
+==================================================
+DATASET PAGE
+==================================================
+
+Create:
+
+"Upload Manufacturing Dataset"
+
+Allow:
+
+- CSV upload
+- Drag and drop
+- Load Demo Dataset
+
+After upload display:
+
+Filename
+Rows
+Columns
+Missing Values
+Duplicate Records
+
+Show the dataset in a table.
+
+Required columns:
+
+BatchID
+MachineID
+Temperature
+Vibration
+DefectCount
+
+Validate the uploaded CSV.
+
+If a required column is missing, show:
+
+"Invalid dataset. Missing required column: X"
+
+Do not crash the application.
+
+==================================================
+DATA CLEANING PAGE
+==================================================
+
+Create a visual pipeline:
+
+RAW DATA
+↓
+QUALITY CHECK
+↓
+MISSING VALUE HANDLING
+↓
+DUPLICATE DETECTION
+↓
+CLEAN DATA
+
+Show a Data Quality Report.
+
+For the demo dataset it should detect:
+
+Missing Temperature: 1
+Missing Vibration: 1
+Duplicate Records: 1
+
+Create:
+
+"CLEAN DATASET"
+
+button.
+
+When clicked:
+
+1. Calculate median Temperature.
+2. Replace missing Temperature with the median.
+3. Calculate median Vibration.
+4. Replace missing Vibration with the median.
+5. Detect duplicate rows.
+6. Remove duplicates.
+7. Create cleaned dataset.
+
+Show:
+
+BEFORE
+
+10 records
+2 missing values
+1 duplicate
+
+AFTER
+
+9 unique records
+0 missing values
+0 duplicates
+
+Show a before/after comparison.
+
+==================================================
+TEMPERATURE DISCRETIZATION
+==================================================
+
+Create a section called:
+
+Temperature Classification
+
+Use:
+
+Temperature < 75
+→ LOW
+
+75 <= Temperature <= 85
+→ NORMAL
+
+Temperature > 85
+→ HIGH
+
+Create a new field:
+
+TemperatureCategory
+
+Example:
+
+72 → LOW
+85 → NORMAL
+92 → HIGH
+69 → LOW
+88 → HIGH
+74 → LOW
+71 → LOW
+
+Display the category in the cleaned dataset.
+
+==================================================
+DEFECT CLASSIFICATION
+==================================================
+
+Create:
+
+Defective
+
+Logic:
+
+DefectCount > 0
+→ YES
+
+DefectCount = 0
+→ NO
+
+Show:
+
+Defective Batches
+Non-Defective Batches
+
+Create a donut chart.
+
+==================================================
+MACHINE HEALTH
+==================================================
+
+For every MachineID calculate:
+
+Average Temperature
+Average Vibration
+Total Defects
+Defect Rate
+
+Then calculate a transparent prototype risk score.
+
+Use normalized:
+
+Temperature Risk
+Vibration Risk
+Historical Defect Risk
+
+Example formula:
+
+Risk Score =
+0.35 * Temperature Risk
++
+0.35 * Vibration Risk
++
+0.30 * Historical Defect Risk
+
+Normalize the final value to 0–100.
+
+Label this clearly:
+
+"Prototype Risk Score"
+
+Important:
+
+Do NOT claim this is a scientifically validated ML prediction because the supplied dataset is very small.
+
+Risk:
+
+0–39 = Healthy
+40–69 = Warning
+70–100 = Critical
+
+Calculate everything dynamically.
+
+==================================================
+MACHINE HEALTH PAGE
+==================================================
+
+Create machine cards.
+
+For each machine show:
+
+Machine ID
+Health status
+Risk score
+Average temperature
+Average vibration
+Defect count
+Defect rate
+
+Clicking a machine opens detailed analysis.
+
+==================================================
+MACHINE DETAILS
+==================================================
+
+For selected machine show:
+
+Machine ID
+Risk Score
+Average Temperature
+Average Vibration
+Defect Count
+Defect Rate
+
+Create:
+
+Temperature chart
+Vibration chart
+Defect history
+
+Add an explanation:
+
+"Why is this machine at risk?"
+
+Generate the explanation dynamically.
+
+Example:
+
+"Machine M3 has relatively high temperature and vibration readings in the current dataset and also has observed defects. These factors contribute to its prototype risk score."
+
+Do not make unsupported claims.
+
+==================================================
+ANALYTICS
+==================================================
+
+Create interactive charts using Recharts.
+
+Charts:
+
+1. Temperature vs DefectCount
+2. Vibration vs DefectCount
+3. Defects by Machine
+4. Average Temperature by Machine
+5. Average Vibration by Machine
+6. Temperature Category Distribution
+7. Machine Risk Comparison
+
+Add filters:
+
+All Machines
+M1
+M2
+M3
+
+Charts must update when filters change.
+
+==================================================
+AI INSIGHTS
+==================================================
+
+Create an "AI Insights" page.
+
+Generate insights dynamically from the dataset.
+
+Examples:
+
+"2 missing sensor values were detected."
+
+"1 duplicate record was detected."
+
+"Machine M3 has the highest observed defect count in the current dataset."
+
+"High-temperature observations should be monitored because they coincide with defects in some records."
+
+"Additional historical data is recommended before training a production-grade machine-learning model."
+
+Important:
+
+Do not claim correlation means causation.
+
+Clearly display:
+
+"Insights are based only on the currently uploaded dataset."
+
+==================================================
+RECOMMENDATIONS
+==================================================
+
+Create a recommendation engine.
+
+For a high-risk machine:
+
+Priority: HIGH
+
+Recommendations:
+
+- Inspect temperature sensor
+- Check vibration levels
+- Review recent defective batches
+- Perform preventive maintenance if abnormal readings persist
+- Continue collecting historical sensor data
+
+For warning:
+
+Priority: MEDIUM
+
+Recommendation:
+
+"Increase monitoring frequency."
+
+For healthy:
+
+Priority: LOW
+
+Recommendation:
+
+"Continue routine monitoring."
+
+Generate recommendations based on calculated values.
+
+==================================================
+LIVE MONITORING DEMO
+==================================================
+
+Add an optional:
+
+"LIVE SIMULATION"
+
+page/card.
+
+Show:
+
+Machine M1
+Machine M2
+Machine M3
+
+Simulate:
+
+Temperature
+Vibration
+
+Values should update every few seconds.
+
+If a value crosses a configurable threshold, show:
+
+⚠ ANOMALY DETECTED
+
+IMPORTANT:
+
+Clearly label:
+
+"Simulation Mode"
+
+Do not claim these are real IoT sensors.
+
+==================================================
+ALERTS
+==================================================
+
+Create alert cards.
+
+Examples:
+
+⚠ High Temperature
+Machine M3 has a high temperature reading.
+
+⚠ Duplicate Detected
+Duplicate BatchID detected.
+
+✓ Cleaning Complete
+Dataset successfully cleaned.
+
+Alerts should be generated dynamically.
+
+==================================================
+EXPORT
+==================================================
+
+Add:
+
+"Download Clean Dataset"
+
+The user should be able to download the cleaned data as CSV.
+
+Also create:
+
+"Export Analysis Report"
+
+Generate a downloadable report containing:
+
+Dataset summary
+Data quality results
+Cleaning operations
+Machine statistics
+Risk scores
+Recommendations
+
+==================================================
+SEARCH AND FILTER
+==================================================
+
+Dataset page should support:
+
+Search BatchID
+Search MachineID
+
+Filters:
+
+Machine
+Temperature Category
+Defective
+Risk Level
+
+==================================================
+METHODOLOGY
+==================================================
+
+Add a small methodology section.
+
+Explain:
+
+Data Cleaning:
+Median imputation for missing numerical values.
+
+Duplicate Detection:
+Duplicate records are detected and removed.
+
+Discretization:
+Temperature is converted into Low, Normal and High categories.
+
+Risk Score:
+Prototype score using normalized temperature, vibration and observed defect history.
+
+Important disclaimer:
+
+"The supplied dataset is small and is intended for prototype demonstration. Larger historical datasets are recommended for production-grade machine-learning validation."
+
+==================================================
+PROJECT ARCHITECTURE
+==================================================
+
+Implement this logical flow:
+
+USER
+ ↓
+WEB DASHBOARD
+ ↓
+CSV UPLOAD
+ ↓
+DATA VALIDATION
+ ↓
+DATA CLEANING
+ ↓
+DISCRETIZATION
+ ↓
+MACHINE ANALYSIS
+ ↓
+RISK SCORING
+ ↓
+VISUALIZATION
+ ↓
+AI INSIGHTS
+ ↓
+RECOMMENDATIONS
+
+==================================================
+IMPORTANT FUNCTIONAL REQUIREMENTS
+==================================================
+
+The application MUST NOT use fake hard-coded dashboard results.
+
+If the user uploads a different CSV with the same columns:
+
+- KPI values change
+- Missing-value count changes
+- Duplicate count changes
+- Charts change
+- Machine statistics change
+- Risk scores change
+- Insights change
+- Recommendations change
+
+Everything should be based on the uploaded data.
+
+==================================================
+ERROR HANDLING
+==================================================
+
+Handle:
+
+- Empty CSV
+- Invalid CSV
+- Missing columns
+- Non-numeric temperature
+- Non-numeric vibration
+- Invalid DefectCount
+- Duplicate rows
+- Missing values
+
+Show friendly error messages.
+
+Never crash.
+
+==================================================
+HACKATHON DEMO MODE
+==================================================
+
+Make the demo extremely easy.
+
+On first launch show:
+
+"Welcome to SmartDefect AI"
+
+Buttons:
+
+[ LOAD DEMO DATA ]
+
+[ UPLOAD YOUR DATASET ]
+
+When "LOAD DEMO DATA" is clicked:
+
+Automatically load the supplied dataset and calculate everything.
+
+==================================================
+FINAL DEMO FLOW
+==================================================
+
+The application should support this exact presentation:
+
+1. Load Demo Dataset
+2. Show 10 raw records
+3. Detect 2 missing values
+4. Detect 1 duplicate
+5. Clean dataset
+6. Show 9 unique records
+7. Categorize temperature
+8. Analyze defects
+9. Open Machine Health
+10. Select M3
+11. Show risk score
+12. Explain why risk is elevated
+13. Show charts
+14. Show recommendations
+15. Download cleaned dataset
+
+==================================================
+FINAL QUALITY CHECK
+==================================================
+
+Before finishing:
+
+- Run the application
+- Fix all build errors
+- Fix all TypeScript errors
+- Fix API errors
+- Test CSV upload
+- Test demo data
+- Test cleaning
+- Test duplicate detection
+- Test charts
+- Test filters
+- Test machine selection
+- Test risk calculation
+- Test CSV download
+- Test responsive design
+- Remove placeholder content
+- Make all buttons functional
+- Make sure the application starts correctly in Replit
+
+Create a clean README explaining:
+
+Project name
+Problem
+Solution
+Features
+Technology
+How to run
+Dataset format
+Risk-score methodology
+Limitations
+
+Build the complete application now.
